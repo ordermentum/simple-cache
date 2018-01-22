@@ -1,7 +1,12 @@
+const Bluebird = require('bluebird');
 
-const builder = (redis) => (
-  {
+const builder = (redis) => {
+  bluebird.promisifyAll(redis.RedisClient.prototype);
+  bluebird.promisifyAll(redis.Multi.prototype);
+
+  return {
     redis,
+
     parse(str) {
     try {
       return JSON.parse(str);
@@ -46,6 +51,7 @@ const builder = (redis) => (
       .execAsync()
       .then(res => parse(res[0]));
   },
-});
+};
+};
 
 module.exports = builder;

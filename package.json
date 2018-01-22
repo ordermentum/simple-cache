@@ -1,6 +1,6 @@
 {
-  "name": "cache-machine",
-  "version": "1.0.0",
+  "name": "@ordermentum/cache-machine",
+  "version": "1.0.1",
   "description": "simple cache built on redis",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,13 @@
     "url": "git+https://github.com/ordermentum/cache-machine.git"
   },
   "author": "John D'Agostino",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/ordermentum/cache-machine/issues"
   },
-  "homepage": "https://github.com/ordermentum/cache-machine#readme"
+  "homepage": "https://github.com/ordermentum/cache-machine#readme",
+  "keywords": [
+    "cache",
+    "redis"
+  ]
 }
