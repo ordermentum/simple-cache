@@ -1,9 +1,4 @@
-const Bluebird = require('bluebird');
-
 const builder = (redis) => {
-  Bluebird.promisifyAll(redis.RedisClient.prototype);
-  Bluebird.promisifyAll(redis.Multi.prototype);
-
   return {
     redis,
 
