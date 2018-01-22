@@ -1,0 +1,19 @@
+{
+  "name": "cache-machine",
+  "version": "1.0.0",
+  "description": "simple cache built on redis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ordermentum/simple-cache.git"
+  },
+  "author": "John D'Agostino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ordermentum/simple-cache/issues"
+  },
+  "homepage": "https://github.com/ordermentum/simple-cache#readme"
+}
