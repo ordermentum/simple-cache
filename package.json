@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ordermentum/simple-cache.git"
+    "url": "git+https://github.com/ordermentum/cache-machine.git"
   },
   "author": "John D'Agostino",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ordermentum/simple-cache/issues"
+    "url": "https://github.com/ordermentum/cache-machine/issues"
   },
-  "homepage": "https://github.com/ordermentum/simple-cache#readme"
+  "homepage": "https://github.com/ordermentum/cache-machine#readme"
 }

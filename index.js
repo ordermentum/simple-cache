@@ -48,6 +48,4 @@ const builder = (redis) => (
   },
 });
 
-module.exports = {
-  builder,
-};
+module.exports = builder;
