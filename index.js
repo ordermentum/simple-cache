@@ -1,3 +1,6 @@
+
+const DEFAULT_EXPIRY = 86400; // 24 hours
+
 const builder = (redis) => {
   return {
     redis,
@@ -10,7 +13,7 @@ const builder = (redis) => {
     }
   },
 
-  async set(name, value, ttl = null) {
+  async set(name, value, ttl = DEFAULT_EXPIRY) {
     await redis.setAsync(name, JSON.stringify(value));
 
     if (ttl) {
@@ -21,6 +24,15 @@ const builder = (redis) => {
   async get(setName, defaultValue = null) {
     const result = await redis.getAsync(setName);
     return this.parse(result) || defaultValue;
+  },
+
+  async getOrSet(name, fallback = async () => {}, ttl = DEFAULT_EXPIRY) {
+    let value = await this.get(name);
+    if (!value) {
+      value = await fallback();
+      await this.set(name, value, ttl);
+    }
+    return value;
   },
 
   async rateLimit(key, limit = 1, window = 30) {
