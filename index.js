@@ -56,7 +56,7 @@ const builder = (redis) => {
       .get(id)
       .del(id)
       .execAsync()
-      .then(res => parse(res[0]));
+      .then(res => this.parse(res[0]));
   },
 };
 };
