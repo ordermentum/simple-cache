@@ -14,11 +14,11 @@ const builder = (redis) => {
   },
 
   async set(name, value, ttl = DEFAULT_EXPIRY) {
-    await redis.setAsync(name, JSON.stringify(value));
-
     if (ttl) {
-      await redis.expireAsync(name, ttl);
+      return redis.setAsync(name, JSON.stringify(value), 'ex', ttl);
     }
+
+    return redis.setAsync(name, JSON.stringify(value));
   },
 
   async get(setName, defaultValue = null) {
