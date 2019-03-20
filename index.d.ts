@@ -9,9 +9,9 @@ declare function OrdermentumCacheMachine(
 
   set: (key: string, value: any, ttl?: number) => Promise<any>;
 
-  get: (key: string, defaultValue: any | null) => Promise<any>;
+  get: (key: string, defaultValue?: any | null) => Promise<any>;
 
-  getOrSet: (key: string, fallback: () => any, ttl?: number) => Promise<any>;
+  getOrSet: (key: string, fallback?: () => any, ttl?: number) => Promise<any>;
 
   getAndDel: (key: string) => Promise<any>;
 
