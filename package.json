@@ -19,5 +19,8 @@
   "keywords": [
     "cache",
     "redis"
-  ]
+  ],
+  "peerDependencies": {
+    "redis": ">=2.7"
+  }
 }
