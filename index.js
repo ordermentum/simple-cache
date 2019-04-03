@@ -14,14 +14,14 @@ const builder = (redis) => {
 
     async set(name, value, ttl = DEFAULT_EXPIRY) {
       if (ttl) {
-        return redis.setAsync(name, JSON.stringify(value), 'ex', ttl);
+        return redis.set(name, JSON.stringify(value), 'ex', ttl);
       }
 
-      return redis.setAsync(name, JSON.stringify(value));
+      return redis.set(name, JSON.stringify(value));
     },
 
     async get(setName, defaultValue = null) {
-      const result = await redis.getAsync(setName);
+      const result = await redis.get(setName);
       return this.parse(result) || defaultValue;
     },
 
@@ -43,8 +43,8 @@ const builder = (redis) => {
         .renamenx(t, k)
         .incr(k)
         .ttl(k)
-        .execAsync();
-      if (response[3] === -1) await redis.expireAsync(k, window);
+        .exec();
+      if (response[3] === -1) await redis.expire(k, window);
       const current = response[2];
       return current > limit;
     },
@@ -54,7 +54,7 @@ const builder = (redis) => {
         .multi()
         .get(id)
         .del(id)
-        .execAsync()
+        .exec()
         .then(res => this.parse(res[0]));
     },
   };

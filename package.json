@@ -1,6 +1,6 @@
 {
   "name": "@ordermentum/cache-machine",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "simple cache built on redis",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,6 @@
     "redis"
   ],
   "peerDependencies": {
-    "redis": ">=2.7"
+    "ioredis": ">=4.9"
   }
 }
