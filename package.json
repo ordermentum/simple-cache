@@ -1,10 +1,13 @@
 {
   "name": "@ordermentum/cache-machine",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "simple cache built on redis",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "spec": "yarn run mocha -R spec -t 7000 --opts ./mocha.opts",
+    "test": "yarn run spec ./test/**/*.ts",
+    "build": "tsc --noEmit && babel -Dd build src --extensions \".js,.ts,.tsx\"",
+    "prepublish": "yarn run build"
   },
   "repository": {
     "type": "git",
@@ -22,5 +25,31 @@
   ],
   "peerDependencies": {
     "ioredis": ">=4.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.4.0",
+    "@babel/plugin-proposal-class-properties": "7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.4.0",
+    "@babel/preset-env": "7.4.2",
+    "@babel/preset-typescript": "7.3.3",
+    "@babel/register": "7.4.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.13.0",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "chai": "^4.2.0",
+    "eslint": "5.15.3",
+    "eslint-config-ordermentum": "0.1.0",
+    "ioredis": "^4.9.0",
+    "lint-staged": "8.1.5",
+    "mocha": "^6.0.2",
+    "nyc": "10.3.2",
+    "prettier": "1.14.3",
+    "sinon": "7.2.7",
+    "typescript": "3.3.4000",
+    "typescript-eslint-parser": "22.0.0",
+    "uuid": "^3.3.2"
   }
 }

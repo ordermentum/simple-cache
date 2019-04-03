@@ -1,0 +1,5 @@
+--recursive
+--timeout 7000
+--require ./test/spec_helper
+--reporter spec
+--exit

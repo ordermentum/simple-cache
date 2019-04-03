@@ -1,9 +1,9 @@
-import { RedisClient } from 'redis';
+import Redis from 'ioredis';
 
 declare function OrdermentumCacheMachine(
-  redis: RedisClient
+  redis: Redis.Redis
 ): {
-  redis: RedisClient;
+  redis: Redis.Redis;
 
   parse: (val: string) => object | false;
 
