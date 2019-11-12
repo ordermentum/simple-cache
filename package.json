@@ -43,7 +43,7 @@
     "eslint": "5.16.0",
     "eslint-config-ordermentum": "0.1.0",
     "ioredis": "^4.9.0",
-    "lint-staged": "8.1.5",
+    "lint-staged": "8.2.1",
     "mocha": "^6.0.2",
     "nyc": "10.3.2",
     "prettier": "1.19.1",
