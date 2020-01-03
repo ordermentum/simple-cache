@@ -831,10 +831,10 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.2.7.tgz#315d570ccb56c53452ff8638738df60726d5b6ea"
   integrity sha512-NYrtPht0wGzhwe9+/idPaBB+TqkY9AhTvOLMkThm0IoEfLaiVQZwBwyJ5puCkO3AUCWrmcoePjp2mbFocKy4SQ==
 
-"@types/node@11.15.3":
-  version "11.15.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.15.3.tgz#cb7f19846a83ac5a88fc22756b74633cdeb476a7"
-  integrity sha512-5RzvXVietaB8S4dwDjxjltAOHtTO87fiksjqjWGZih97j6KSrdCDaRfmYMNrgrLM87odGBrsTHAl6N3fLraQaw==
+"@types/node@11.15.4":
+  version "11.15.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.15.4.tgz#2c8d58f726cfbbd9b76d179475fd386d650a2fda"
+  integrity sha512-z7deEbNOPcS7pb7uyaZhbITh18ruGghYh86VmUL2zJPKeu9tEAqF0goQH0dhWamHoBJpkyWroNxPZjzNvbYVCw==
 
 abbrev@1:
   version "1.1.1"
