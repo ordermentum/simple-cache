@@ -50,6 +50,6 @@
     "sinon": "8.1.0",
     "typescript": "3.7.4",
     "typescript-eslint-parser": "22.0.0",
-    "uuid": "3.3.3"
+    "uuid": "3.4.0"
   }
 }
