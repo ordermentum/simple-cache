@@ -3,12 +3,12 @@ import 'core-js/modules/es7.symbol.async-iterator';
 
 const DEFAULT_EXPIRY = 86400; // 24 hours
 
-async function * keysMatching(redis, pattern) {
+async function* keysMatching(redis, pattern) {
   async function* iterate(curs, pattern) {
-    const [[cursor, keys]] = await redis
+    const [[,[cursor,keys]]] = await redis
       .multi()
       .scan(curs, 'MATCH', pattern)
-      .execAsync();
+      .exec();
     for (const key of keys) yield key;
     if (cursor !== '0') yield* iterate(cursor, pattern);
   }
@@ -65,12 +65,12 @@ export default (redis: Redis) => {
     },
 
     async getAndDel(id: string) {
-      return redis
+      const res = await redis
         .multi()
         .get(id)
         .del(id)
-        .exec()
-        .then(res => this.parse(res[0][1]));
+        .exec();
+      return this.parse(res[0][1]);
     },
 
     /*
@@ -90,10 +90,9 @@ export default (redis: Redis) => {
     ) {
       score = score ?? Math.round(Date.now());
       if (transaction) {
-        const multi = redis.multi().zadd(key, score, JSON.stringify(data));
-        return multi.execAsync();
+        return redis.multi().zadd(key, score, JSON.stringify(data)).exec();
       }
-      return redis.zaddAsync(key, score, JSON.stringify(data));
+      return redis.zadd(key, score, JSON.stringify(data));
     },
 
     async createTransaction() {
@@ -104,39 +103,26 @@ export default (redis: Redis) => {
       const minScore = 0;
       const maxScore = Math.round(Date.now());
       if (transaction) {
-        const res: string | null = await new Promise(async resolve => {
-          try {
-            const multi = redis.multi();
-            multi.zrangebyscore(
-              key,
-              minScore,
-              maxScore,
-              'WITHSCORES',
-              'LIMIT',
-              0,
-              1
-            );
-            multi.exec(async (err, results) => {
-              if (err) {
-                resolve(null);
-              }
-              const result = results[0];
-              if (!result) {
-                resolve(null);
-              }
-              resolve(result);
-            });
-          } catch (err) {
-            resolve(null);
+        try {
+          const result = await redis.multi().zrangebyscore(
+            key,
+            minScore,
+            maxScore,
+            'WITHSCORES',
+            'LIMIT',
+            0,
+            1
+          ).exec();
+          if (!result || !result.length) {
+            return null;
           }
-        });
-        if (!res || !res.length) {
-          return false;
+          const entity = JSON.parse(result[0][1][0]);
+          return entity;
+        } catch (err) {
+          return null;
         }
-        const entity = JSON.parse(res[0]);
-        return entity;
       }
-      const result = await redis.zrangebyscoreAsync(
+      const result = await redis.zrangebyscore(
         key,
         minScore,
         maxScore,
@@ -148,35 +134,32 @@ export default (redis: Redis) => {
       if (!result || !result.length) {
         return false;
       }
-      const res = result[0];
+      const res = result[0][1][0];
       const entity = JSON.parse(res);
       return entity;
     },
 
     async remove(key: string, data: string, transaction?: Boolean) {
       if (transaction) {
-        const multi = redis.multi().zrem(key, data);
-        return multi.execAsync();
+        return redis.multi().zrem(key, data).exec();
       }
-      return redis.zremAsync(key, data);
+      return redis.zrem(key, data);
     },
 
     async delete(key: string, transaction?: boolean) {
       if (transaction) {
-        const multi = redis.multi().del(key);
-        return multi.execAsync();
+        return redis.multi().del(key).exec();
       }
-      return redis.delAsync(key);
+      return redis.del(key);
     },
 
     async currentQueueCount(key: string, transaction?: boolean) {
       const minScore = 0;
       const maxScore = Math.round(Date.now());
       if (transaction) {
-        const multi = redis.multi().zcount(key, minScore, maxScore);
-        return multi.execAsync();
+        return redis.multi().zcount(key, minScore, maxScore).exec();
       }
-      return redis.zcountAsync(key, minScore, maxScore);
+      return redis.zcount(key, minScore, maxScore);
     },
     async allKeys(pattern: string) {
       const results: string[] = [];
@@ -190,10 +173,10 @@ export default (redis: Redis) => {
       const time = Math.round(Date.now());
       const result = {};
       for (const key of keys) {
-        const [count] = await redis
+        const [[,count]] = await redis
           .multi()
           .zcount(key, 0, time)
-          .execAsync();
+          .exec();
         result[key] = count;
       }
       return result;
