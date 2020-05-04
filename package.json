@@ -1,6 +1,6 @@
 {
   "name": "@ordermentum/cache-machine",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "simple cache built on redis",
   "main": "build/index.js",
   "scripts": {
@@ -39,7 +39,6 @@
     "@types/node": "11.15.12",
     "babel-plugin-add-module-exports": "1.0.2",
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
-    "bluebird": "^3.7.2",
     "chai": "4.2.0",
     "eslint": "6.8.0",
     "eslint-config-ordermentum": "0.1.0",
