@@ -1,6 +1,6 @@
 {
   "name": "@ordermentum/cache-machine",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "simple cache built on redis",
   "main": "build/index.js",
   "scripts": {
