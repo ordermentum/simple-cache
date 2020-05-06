@@ -72,16 +72,7 @@ export default (redis: Redis) => {
         .exec();
       return this.parse(res[0][1]);
     },
-
-    /*
-    ** We use a sorted set with a score of unix timestamp. There will be 2 advantages for this:
-    ** 1. We can query according to timestamp in the sorted set
-    ** 2. We can delay execution in the consumer for an item whose time has not arrived, can be used for exponential backoff
-    ** For eg. when we enqueue a sync operation with the current timestamp. The worker can look for any queued items in the sorted set using
-    ** min_score 0 and max_score current_timestamp which will give the worker the above sync operation.
-    ** and we enqueue an item with (current_timestamp + 10000 (10s)), the worker will not be able to see this item till 10 seconds pass
-    ** essentially giving us a delayed execution.
-    */
+    
     async addWithScore(
       key: string,
       data: any,
