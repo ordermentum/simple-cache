@@ -139,7 +139,7 @@ export default (redis: Redis) => {
       return entity;
     },
 
-    async remove(key: string, data: string, transaction?: Boolean) {
+    async removeFromSet(key: string, data: string, transaction?: Boolean) {
       if (transaction) {
         return redis.multi().zrem(key, data).exec();
       }
@@ -153,7 +153,7 @@ export default (redis: Redis) => {
       return redis.del(key);
     },
 
-    async currentQueueCount(key: string, transaction?: boolean) {
+    async currentSetCount(key: string, transaction?: boolean) {
       const minScore = 0;
       const maxScore = Math.round(Date.now());
       if (transaction) {
@@ -161,16 +161,15 @@ export default (redis: Redis) => {
       }
       return redis.zcount(key, minScore, maxScore);
     },
-    async allKeys(pattern: string) {
+    async allKeys(pattern: string, splitBy?: string) {
       const results: string[] = [];
       for await (const key of keysMatching(redis, pattern)) {
-        results.push(key.split('myob')[1]);
+        results.push(splitBy ? key.split(splitBy)[1] : key);
       }
       return results;
     },
 
-    async sortedSetCountsTillRuntime(keys: string[]) {
-      const time = Math.round(Date.now());
+    async sortedSetCounts(keys: string[], time: number = Math.round(Date.now())) {
       const result = {};
       for (const key of keys) {
         const [[,count]] = await redis
