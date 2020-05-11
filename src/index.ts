@@ -152,7 +152,7 @@ export default (redis: Redis) => {
       }
       return redis.zcount(key, minScore, maxScore);
     },
-    async allKeys(pattern: string, splitBy?: string) {
+    async getKeysMatchingUsingScan(pattern: string, splitBy?: string) {
       const results: string[] = [];
       for await (const key of keysMatching(redis, pattern)) {
         results.push(splitBy ? key.split(splitBy)[1] : key);
@@ -170,6 +170,14 @@ export default (redis: Redis) => {
         result[key] = count;
       }
       return result;
+    },
+    async getKeysMatching(pattern: string, splitBy?: string) {
+      const results: string[] = [];
+      const keys = await redis.keys(pattern);
+      for await (const key of keys) {
+        results.push(splitBy ? key.split(splitBy)[1] : key);
+      }
+      return results;
     }
   };
 };
