@@ -16,7 +16,8 @@ declare function OrdermentumCacheMachine(
   removeFromSet(key: string, data: string, transaction?: Boolean): Promise<any>;
   delete(key: string, transaction?: boolean): Promise<any>;
   currentSetCount(key: string, transaction?: boolean): Promise<any>;
-  allKeys(pattern: string, splitBy?: string): Promise<string[]>;
+  getKeysMatchingUsingScan(pattern: string, splitBy?: string): Promise<string[]>;
+  getKeysMatching(pattern: string, splitBy?: string): Promise<string[]>;
   sortedSetCounts(keys: string[], time?: number): Promise<{}>;
 };
 
