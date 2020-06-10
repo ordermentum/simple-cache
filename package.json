@@ -36,7 +36,7 @@
     "@babel/register": "7.10.1",
     "@types/chai": "4.2.11",
     "@types/mocha": "5.2.7",
-    "@types/node": "11.15.15",
+    "@types/node": "11.15.16",
     "babel-plugin-add-module-exports": "1.0.2",
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
     "chai": "4.2.0",
