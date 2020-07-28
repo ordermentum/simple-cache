@@ -23,7 +23,7 @@ describe('cache machine', () => {
 
   it('get and del', async () => {
     await cache.set('test2', 'test');
-    const value = await cache.getAndDel('test2', null);
+    const value = await cache.getAndDel('test2');
     expect(value).to.equal('test');
     const value2 = await cache.get('test2');
     expect(value2).to.equal(null);
@@ -32,7 +32,7 @@ describe('cache machine', () => {
   it('get or set', async () => {
     let called = false;
     const key = `test3:${uuid.v4()}`;
-    let value = await cache.getOrSet(key, () => {
+    let value = await cache.getOrSet(key, async () => {
       called = true;
       return 1;
     });
@@ -41,7 +41,7 @@ describe('cache machine', () => {
 
     // reset
     called = false;
-    value = await cache.getOrSet(key, () => {
+    value = await cache.getOrSet(key, async () => {
       called = true;
       return 'test';
     });

@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "lib": [
-      "es2017"
+      "es2019"
     ],
-    "target": "es2017",
+    "target": "es2019",
     "module": "commonjs",
     "allowJs": true,
     "checkJs": false,
-    "declaration": false,
+    "declaration": true,
     "outDir": "build",
     "strict": true,
     "alwaysStrict": true,
@@ -24,7 +24,6 @@
   },
   "include": [
     "src",
-    "definitions"
   ],
   "exclude": [
     "node_modules"

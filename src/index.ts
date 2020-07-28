@@ -1,5 +1,4 @@
 import { Redis } from 'ioredis';
-import 'core-js/modules/es7.symbol.async-iterator';
 
 const DEFAULT_EXPIRY = 86400; // 24 hours
 
@@ -40,7 +39,7 @@ export default (redis: Redis) => {
       return this.parse(result) || defaultValue;
     },
 
-    async getOrSet(name: string, fallback = async () => { }, ttl = DEFAULT_EXPIRY) {
+    async getOrSet(name: string, fallback = async (): Promise<any> => { }, ttl = DEFAULT_EXPIRY) {
       let value = await this.get(name);
       if (!value) {
         value = await fallback();
@@ -81,6 +80,7 @@ export default (redis: Redis) => {
     ) {
       score = score ?? Math.round(Date.now());
       if (transaction) {
+        // @ts-ignore
         return redis.multi().zadd(key, score, JSON.stringify(data)).exec();
       }
       return redis.zadd(key, score, JSON.stringify(data));
@@ -101,6 +101,7 @@ export default (redis: Redis) => {
             maxScore,
             'WITHSCORES',
             'LIMIT',
+            // @ts-ignore
             0,
             1
           ).exec();
