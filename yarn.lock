@@ -160,10 +160,10 @@
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.2.14.tgz#44d2dd0b5de6185089375d976b4ec5caf6861193"
   integrity sha512-G+ITQPXkwTrslfG5L/BksmbLUA0M1iybEsmCWPqzSxsRRhJZimBKJkoMi8fr/CPygPTj4zO5pJH7I2/cm9M7SQ==
 
-"@types/ioredis@4.19.1":
-  version "4.19.1"
-  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-4.19.1.tgz#354c4907498b90fe14c2edff8e8ea9e5aea9821f"
-  integrity sha512-+q10eLAgjbYJMY/fAM7+zmNBegCAk3FZwcvgjdsPy5xK4MzFcVXB6yxa69bTB5Ouz24WqJiub6lPzasLE5BYZQ==
+"@types/ioredis@4.19.2":
+  version "4.19.2"
+  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-4.19.2.tgz#68215d2fab93dd4f5d1d1225938389c32e7b98a2"
+  integrity sha512-fejSsJ4pYvA8zVLvAgQFI9T2uvxhUW7Ph95KodnNxMZvnUhQrn4ohxjH7fuU+jUw7Q4JCDcaba7JxDmszFmrCA==
   dependencies:
     "@types/node" "*"
 
