@@ -31,7 +31,7 @@
     "@types/node": "11.15.44",
     "@types/ioredis": "4.19.3",
     "@types/mocha": "7.0.2",
-    "chai": "4.2.0",
+    "chai": "4.3.0",
     "eslint": "6.8.0",
     "eslint-config-ordermentum": "0.1.0",
     "ioredis": "4.19.4",
