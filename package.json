@@ -27,7 +27,7 @@
     "ioredis": ">=4.9"
   },
   "devDependencies": {
-    "@types/chai": "4.2.15",
+    "@types/chai": "4.2.16",
     "@types/node": "11.15.50",
     "@types/ioredis": "4.22.2",
     "@types/mocha": "7.0.2",
